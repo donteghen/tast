@@ -52,31 +52,52 @@ exports.Restaurant_create = function(req, res) {
 // Restaurant update
 exports.Restaurant_Update = async function(req, res){
     var id = req.params.id;
-    await Restaurant.updateOne({_id:id}, (err)=>{
+    var update =  new Restaurant({
+        name:req.body.name,
+        location:req.body.location,
+        menu:{
+            drinks:req.body.drinks,
+            dishes:req.body.dishes
+        }
+        
+    });
+    await Restaurant.findById(id, (err, doc)=>{
     if(err){
         res.json({'error message' : "Couldn't update restaurant"});
     }
     else{
-        res.json({'success message': 'successfully updated'})
-    }
-    });
+        doc.name=req.body.name;
+        doc.location=req.body.location,
+        doc.menu.drinks=req.body.drinks,
+        doc.menudishes=req.body.dishes
+        doc.save((err)=>{
+            if(err){
+                res.json({'error message' : "Couldn't update restaurant"});
+            }
+            else{
+                res.json({'success message': 'successfully updated'})
+            }
+        })
+        } 
+        
+    })
     
 }
 
 // Restaurant Delete 
 exports.Restaurant_Delete = async function(req, res){
     var id = req.params.id;
-    await Restaurant.deleteOne({_id:id}, (err)=>{
+    await Restaurant.deleteOne({_id:id}, (err, doc)=>{
         if(err){
             res.json({'error message' : "Couldn't delete restaurant"});
         }
         else{
-            Review.deleteMany({_id:id}, (err)=>{
+            Review.deleteMany({_id: {$in:doc.reviews}}, (err)=>{
                 if(err){
                     res.json({'error message' : "Couldn't delete related restaurant's reviews "});
                 }
                 else{
-                    res.json({'error message' : "delete completed"});
+                    res.json({'error message' : "Restaurant and related reviews deletion completed"});
                 }
             })
         }

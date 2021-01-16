@@ -19,13 +19,17 @@ router.get('/restaurants/:id', Restaurant_Controller.Restaurant_Details);
 router.post('/restaurant/', Restaurant_Controller.Restaurant_create) 
 
 /*Update restaurant */
-router.put('/contact/:id/update', Restaurant_Controller.Restaurant_Update);
+router.put('/restaurants/:id/update', Restaurant_Controller.Restaurant_Update);
 
 /*Delete restaurant */
 router.delete('/restaurant/:id', Restaurant_Controller.Restaurant_Delete);
 
+
+
+//******************************************************************************************************************//
+
 /* create new restaurant review *************************************************************************/
-router.post('/restaurant/review', Review_Controller.Review_create) 
+router.post('/restaurants/:id/reviews', Review_Controller.Review_create) 
 
 /* get all restaurant reviews *************************************************************************/
 router.get('/restaurants/:id/reviews', Review_Controller.Review_list) 
