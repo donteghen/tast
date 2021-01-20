@@ -22,7 +22,7 @@ router.post('/restaurant/', Restaurant_Controller.Restaurant_create)
 router.put('/restaurants/:id/update', Restaurant_Controller.Restaurant_Update);
 
 /*Delete restaurant */
-router.delete('/restaurant/:id', Restaurant_Controller.Restaurant_Delete);
+router.delete('/restaurants/:id', Restaurant_Controller.Restaurant_Delete);
 
 
 
