@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="bg-light text-center mt-4" *ngIf="isSubmitted">
+        <h2 style="font-style: italic; font-weight: bold; font-size: 24;">Thanks for joining tast. Now your customers too can taste and share their expriences :)</h2>
+        <button class="btn btn-primary" style="font-style: italic; font-weight: bold; font-size: 24;" routerLink="/restaurants">Go back</button>
+    </div>
+    <div class="mt-4 bg-light" *ngIf="!isSubmitted">
+        <h2 style="font-style: italic; font-weight: bold;">Restaurant Creation Form</h2>
+        <form [formGroup]="form" (ngSubmit)="create(form)">
+            <div class="form-group">
+                <label>Enter Restaurant Name:</label>
+                <input type="text" class="form-control" name="name" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label>Enter Location:</label>
+                <input type="text" class="form-control" name="location" formControlName="location">
+            </div>
+            <div formGroupName="menu">
+                <div class="form-group">
+                    <label>Enter comma separated Drinks:</label>
+                    <input type="text" class="form-control" name="drinks" formControlName="drinks">
+                </div>
+                <div class="form-group">
+                    <label>Enter comma separated Dishes:</label>
+                    <input type="text" class="form-control" name="dishes" formControlName="dishes">
+                </div>
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-warning mr-4" routerLink="/restaurants">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Create Restaurant</button>
+            </div>
+        </form>
+    </div>
+</div>

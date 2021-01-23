@@ -21,6 +21,7 @@ var mongoDB = 'mongodb+srv://tastAdmin:liverpool@tast@cluster0.kv44r.mongodb.net
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('connected', console.error.bind(console, 'MongoDB connection connected:'));
 
 app.use(logger('dev'));
 app.use(express.json());

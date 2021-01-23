@@ -14,9 +14,9 @@ exports.Restaurant_list = async function(req, res){
 }
 
 // Restaurant details
-exports.Restaurant_Details = function(req, res){
+exports.Restaurant_Details = async function(req, res){
     const id = req.params.id;
-    Restaurant.findOne({_id:id}).populate('reviews').exec((err, doc) =>{
+    await Restaurant.findOne({_id:id}).populate('reviews').exec((err, doc) =>{
         if(err){
             res.json({'error message' : "Couldn't find requested restaurant"});
         }
@@ -28,19 +28,24 @@ exports.Restaurant_Details = function(req, res){
 }
 
 //// Restuarant create.
-exports.Restaurant_create = function(req, res) {
+exports.Restaurant_create = async function(req, res) {
+    
     var restaurant = new Restaurant({
-        name:req.body.name,
-        location:req.body.location,
-        menu:{
-            drinks:req.body.drinks,
-            dishes:req.body.dishes
+        name : req.body.name,
+        location : req.body.location,
+        menu : {
+            drinks : req.body.menu.drinks ,
+            dishes : req.body.menu.dishes
         },
-        reviews:[]
+        reviews : []
     });
-    restaurant.save((err) =>{
+        
+        
+        
+        
+    await restaurant.save((err) =>{
         if(err){
-            res.json({'error message' : "Couldn't create new restaurant"});
+            res.status(500).json({'error message' : "Couldn't create new restaurant"});
         }
         else{
 
@@ -52,15 +57,6 @@ exports.Restaurant_create = function(req, res) {
 // Restaurant update
 exports.Restaurant_Update = async function(req, res){
     var id = req.params.id;
-    var update =  new Restaurant({
-        name:req.body.name,
-        location:req.body.location,
-        menu:{
-            drinks:req.body.drinks,
-            dishes:req.body.dishes
-        }
-        
-    });
     await Restaurant.findById(id, (err, doc)=>{
     if(err){
         res.json({'error message' : "Couldn't update restaurant"});
@@ -68,8 +64,8 @@ exports.Restaurant_Update = async function(req, res){
     else{
         doc.name=req.body.name;
         doc.location=req.body.location,
-        doc.menu.drinks=req.body.drinks,
-        doc.menudishes=req.body.dishes
+        doc.menu.drinks=req.body.menu.drinks,
+        doc.menudishes=req.body.menu.dishes
         doc.save((err)=>{
             if(err){
                 res.json({'error message' : "Couldn't update restaurant"});

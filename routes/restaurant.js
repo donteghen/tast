@@ -16,7 +16,7 @@ router.get('/restaurants', Restaurant_Controller.Restaurant_list);
 router.get('/restaurants/:id', Restaurant_Controller.Restaurant_Details);
 
 /* create new restaurant */
-router.post('/restaurant/', Restaurant_Controller.Restaurant_create) 
+router.post('/restaurant', Restaurant_Controller.Restaurant_create) 
 
 /*Update restaurant */
 router.put('/restaurants/:id/update', Restaurant_Controller.Restaurant_Update);
