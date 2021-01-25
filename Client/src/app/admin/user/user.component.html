@@ -1,24 +1,22 @@
-
 <div class="mt-2 container-fluid">
     <div>
         <p>just hold this create button for now! :)</p>
-        <button class="btn btn-primary btn-block" routerLink="/admin/restaurant">Create new Restaurant</button>
+        <button class="btn btn-primary btn-block" routerLink="/admin/restaurant">Create Users</button>
     </div>
-    <div class="list-group mt-2 bg-light" *ngFor="let restaurant of retaurantView">
+    <div class="list-group mt-2 bg-light" *ngFor="let user of userView">
         <a class="list-group-item list-group-item-action">
           <div class="d-flex w-100 ">
             <div class="d-flex w-100 ">
                 <img src="https://via.placeholder.com/100/0000FF/808080 ?Text=logo">
                 <div class="ml-2">
-                    <h3 class="mb-1">{{restaurant.name}}</h3>
-                    <h5 class="mb-1">{{restaurant.location}}</h5>
-                    <p>rating:<span style="color: rgb(0, 255, 136);"><ngb-rating [rate]="rating" readonly="true" max="5"></ngb-rating></span></p>
-                    
+                    <h3 class="mb-1">{{user.userName}}</h3>
+                    <h4 class="mb-1">{{user.email}}</h4> 
+                    <h5 class="mb-1">{{user.isAdmin? "Admin User": "Standard User"}}</h5> 
                 </div>
             </div>
             <div >
-                <button class="btn btn-warning btn-lg" routerLink="/admin/restaurants/{{restaurant._id}}"><i class="fas fa-edit"></i></button>
-                <button class="btn btn-danger btn-lg" (click)="deleteRestaurant(restaurant._id)"><i class="fas fa-trash-alt"></i></button>
+                <button class="btn btn-warning btn-lg" routerLink="/admin/restaurants/{{user._id}}"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger btn-lg" (click)="deleteUser(user._id)"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </a>  

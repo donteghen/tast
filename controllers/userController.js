@@ -29,7 +29,8 @@ exports.User_Details = async function(req, res){
 exports.User_create = function(req, res) {
     var user = new User({
     userName: req.body.userName,
-    email: req.body.email
+    email: req.body.email,
+    isAdmin: req.body.isAdmin
     });
     user.save((err) =>{
         if(err){
@@ -45,12 +46,15 @@ exports.User_create = function(req, res) {
 // User update
 exports.User_Update = async function(req, res){
     var id = req.params.id;
-    await User.updateOne({_id:id}, (err)=>{
+    await User.updateOne({_id:id}, {userName: req.body.userName, email: req.body.email, isAdmin: req.body.isAdmin}, (err, doc)=>{
         if(err){
             res.status(500).json({'error message' : "Couldn't update user "});
         }
         else
         {
+            console.log(req.body.isAdmin);
+            console.log(JSON.stringify(doc));
+
             res.status(200).json({'sucsess message' : "User successfully updated "});
         }
     })

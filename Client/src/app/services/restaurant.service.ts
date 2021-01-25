@@ -27,12 +27,12 @@ export class RestaurantService {
   }
 
   updateRestaurant(restaurant:Restaurant):Observable<Restaurant>{
-    return this.http.put<Restaurant>(url+`restaurants/:${restaurant._id}/update`, restaurant)
+    return this.http.put<Restaurant>(url+`restaurants/${restaurant._id}/update`, restaurant)
     .pipe(catchError((err:Response) => throwError(`network Error : ${err.statusText},   ${err.status}`)));
   }
 
   deleteRestaurant(id:string):Observable<Restaurant>{
-    return this.http.delete<Restaurant>(url+`restaurant:${id}`)
+    return this.http.delete<Restaurant>(url+`restaurants/${id}`)
     .pipe(catchError((err:Response) => throwError(`network Error : ${err.statusText},   ${err.status}`)));
   }
 }

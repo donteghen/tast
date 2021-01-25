@@ -57,25 +57,13 @@ exports.Restaurant_create = async function(req, res) {
 // Restaurant update
 exports.Restaurant_Update = async function(req, res){
     var id = req.params.id;
-    await Restaurant.findById(id, (err, doc)=>{
+    await Restaurant.updateOne({_id:id}, {name:req.body.name, location:req.body.location, menu:{drinks:req.body.menu.drinks, dishes:req.body.menu.dishes}}, (err, doc)=>{
     if(err){
         res.json({'error message' : "Couldn't update restaurant"});
     }
     else{
-        doc.name=req.body.name;
-        doc.location=req.body.location,
-        doc.menu.drinks=req.body.menu.drinks,
-        doc.menudishes=req.body.menu.dishes
-        doc.save((err)=>{
-            if(err){
-                res.json({'error message' : "Couldn't update restaurant"});
-            }
-            else{
-                res.json({'success message': 'successfully updated'})
-            }
-        })
-        } 
-        
+        res.json({'success message': 'successfully updated'})
+        }  
     })
     
 }

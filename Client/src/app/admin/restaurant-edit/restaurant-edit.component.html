@@ -1,1 +1,44 @@
-<p>restaurant-edit works!</p>
+<div class="container-fluid">
+    <div class="bg-light text-center mt-4" *ngIf="!restaurant.name">
+        <h2 style="font-style: italic; font-weight: bold; font-size: 24;">Requested restaurant doesn't exist:(</h2>
+        <button class="btn btn-primary" style="font-style: italic; font-weight: bold; font-size: 24;" routerLink="/admin">Go back</button>
+    </div>
+    <div class="mt-4 bg-light" *ngIf="restaurant.name">
+        <h2 style="font-style: italic; font-weight: bold;">Update Restaurant Details</h2>
+
+        <form [formGroup]="form" (ngSubmit)="update(form)">
+            <div class="form-group">  
+                <label>Enter Restaurant Name:</label>
+                <input type="text" class="form-control" name="name" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label>Enter Location:</label>
+                <input type="text" class="form-control" name="location" formControlName="location">
+            </div>
+            <div formGroupName="menu" >
+                <div class="form-group">
+                    <label>Enter comma separated Drinks:</label>
+                    <input type="text" class="form-control" name="drinks" formControlName="drinks">
+                </div>
+                <div class="form-group">
+                    <label>Enter comma separated Dishes:</label>
+                    <input type="text" class="form-control" name="dishes" formControlName="dishes">
+                </div>
+            </div>
+            <div class="alert-info" *ngIf="!restaurant.reviews.length">
+                <h3>No comments!</h3>
+            </div>
+            <div *ngIf="restaurant.reviews.length > 0">
+                <ul class="list-group" *ngFor="let comment of restaurant.reviews">
+                    <li class="list-group-item">{{comment.content}}</li>
+                </ul>
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-warning mr-4" routerLink="/admin">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Update Restaurant</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+

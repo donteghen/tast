@@ -1,3 +1,4 @@
+import { Review } from './reviews';
 export class Restaurant{
     public _id?:string;
         public name?:string;
@@ -6,6 +7,6 @@ export class Restaurant{
             drinks?:string[], 
             dishes?:string[]
         };
-        public reviews?:string[];
+        public reviews?:Review[];
     
 }
