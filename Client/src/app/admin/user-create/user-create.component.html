@@ -1,1 +1,28 @@
-<p>user-create works!</p>
+<div class="container-fluid">
+    
+    <div class="mt-4 bg-light">
+        <h2 style="font-style: italic; font-weight: bold;">Register a new user</h2>
+
+        <form [formGroup]="form" (ngSubmit)="update(form)">
+            <div class="form-group">  
+                <label>User Name:</label>
+                <input type="text" class="form-control" name="userName" formControlName="userName">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control" name="email" formControlName="email">
+            </div>
+            <div class="form-group">
+                <label>Is-Admin:
+                    <input type="checkbox"  class="form-control" name="isAdmin" formControlName="isAdmin">
+                </label>
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-warning mr-4" routerLink="/admin/users">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Create New User User</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+

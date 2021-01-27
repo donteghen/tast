@@ -23,7 +23,6 @@ pageSize:number=2;
   getUsers(){
     this.userService.getUsers().subscribe(data =>{
       this.users = data;
-      console.log(this.users[0].isAdmin)
       this.collection = data.length;
       this.userView = this.users.slice((this.page-1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize );
     });
@@ -31,9 +30,10 @@ pageSize:number=2;
 
   deleteUser(id:string){
     this.userService.deleteUser(id).subscribe(()=>{
-      console.log("succeffuly deleted")
+      console.log("succeffuly deleted");
+      this.getUsers();
     });
-    this.getUsers();
+    
   }
   pageChange(p:number){
     this.userView = this.users.slice((p-1) * this.pageSize, (p - 1) * this.pageSize + this.pageSize )

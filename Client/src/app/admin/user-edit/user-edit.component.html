@@ -1,1 +1,38 @@
-<p>user-edit works!</p>
+<div class="container-fluid">
+    <div class="bg-light text-center mt-4" *ngIf="!user.userName">
+        <h2 style="font-style: italic; font-weight: bold; font-size: 24;">Couldn't get requested User :(</h2>
+        <button class="btn btn-primary" style="font-style: italic; font-weight: bold; font-size: 24;" routerLink="/admin">Go back</button>
+    </div>
+    <div class="mt-4 bg-light" *ngIf="user.userName">
+        <h2 style="font-style: italic; font-weight: bold;">Update User Details</h2>
+
+        <form [formGroup]="form" (ngSubmit)="update(form)">
+            <div class="form-group">  
+                <label>User Name:</label>
+                <input type="text" class="form-control" name="userName" formControlName="userName">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control" name="email" formControlName="email">
+            </div>
+            <div class="form-group">
+                <label>Is-Admin:
+                    <input type="checkbox" [checked]="isAdmin.value" class="form-control" name="isAdmin" formControlName="isAdmin">
+                </label>
+            </div>
+            <div class="alert-info" *ngIf="!userReviews">
+                <h3>No comments!</h3>
+            </div>
+            <div *ngIf="userReviews">
+                <ul class="list-group" *ngFor="let comment of userReviews">
+                    <li class="list-group-item">{{comment}}</li>
+                </ul>
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-warning mr-4" routerLink="/admin/users">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Update User</button>
+            </div>
+            
+        </form>
+    </div>
+</div>

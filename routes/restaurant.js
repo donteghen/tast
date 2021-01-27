@@ -29,9 +29,12 @@ router.delete('/restaurants/:id', Restaurant_Controller.Restaurant_Delete);
 //******************************************************************************************************************//
 
 /* create new restaurant review *************************************************************************/
-router.post('/restaurants/:id/reviews', Review_Controller.Review_create) 
+router.post('/restaurants/:id/review', Review_Controller.Review_create) ;
 
 /* get all restaurant reviews *************************************************************************/
-router.get('/restaurants/:id/reviews', Review_Controller.Review_list) 
+router.get('/restaurants/:id/reviews', Review_Controller.Review_list) ;
+
+// delete review for a certain restaurant
+router.delete('/restaurants/:id/reviews/:review_id', Review_Controller.Review_Delete);
   
 module.exports = router;

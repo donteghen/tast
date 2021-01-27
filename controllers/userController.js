@@ -52,9 +52,6 @@ exports.User_Update = async function(req, res){
         }
         else
         {
-            console.log(req.body.isAdmin);
-            console.log(JSON.stringify(doc));
-
             res.status(200).json({'sucsess message' : "User successfully updated "});
         }
     })

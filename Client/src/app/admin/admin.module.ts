@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { RestaurantEditComponent } from './restaurant-edit/restaurant-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
-import { ngbRunTransition } from '@ng-bootstrap/ng-bootstrap/util/transition/ngbTransition';
 import { UserComponent } from './user/user.component';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
@@ -14,7 +13,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 @NgModule({
-  declarations: [RestaurantCreateComponent, AdminHomeComponent, RestaurantEditComponent, UserComponent, UserCreateComponent, UserEditComponent], 
+  declarations: [RestaurantCreateComponent, AdminHomeComponent, RestaurantEditComponent, 
+    UserComponent, UserCreateComponent, UserEditComponent], 
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, AdminRoutingModule,NgbPaginationModule, NgbRatingModule
   ]

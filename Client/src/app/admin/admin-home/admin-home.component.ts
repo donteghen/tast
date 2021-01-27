@@ -25,8 +25,7 @@ pageSize:number=4;
     this.restaurantService.getResatuarants().subscribe(data =>{
       this.restaurants = data;
       this.collection = data.length;
-      console.log(this.collection);
-      this.retaurantView = this.restaurants.slice((this.page-1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize );
+      this.pageChange(1);
     })
   }
 
@@ -38,7 +37,7 @@ pageSize:number=4;
   }
   pageChange(p:number){
     this.page = p;
-    this.getRestaurants();
+    this.retaurantView = this.restaurants.slice((p-1) * this.pageSize, (p- 1) * this.pageSize + this.pageSize );
   }
   
 }

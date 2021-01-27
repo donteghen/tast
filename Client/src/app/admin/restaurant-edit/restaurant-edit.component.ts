@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class RestaurantEditComponent implements OnInit {
 restaurant = new Restaurant()
 form:FormGroup
-isSubmitted:boolean;
+
   constructor(private restaurantService:RestaurantService, private activeRoute: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ isSubmitted:boolean;
           }),
           review: new FormControl(this.restaurant.reviews)
         });
-        this.isSubmitted = false;
+        
       })
     })
   }

@@ -25,7 +25,7 @@
     </div>
     <div class="d-flex justify-content-end">
         <ngb-pagination [collectionSize]="collection" [pageSize]="pageSize" 
-        (pageChange)="pageChange(page)" [(page)]="page"></ngb-pagination>
+        (pageChange)="pageChange($event)" [(page)]="page"></ngb-pagination>
     </div>
     <div class="mt-2 bg-dark">
         <h1>more to come place holder..............................</h1>
