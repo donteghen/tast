@@ -26,12 +26,28 @@
                 </div>
             </div>
             <div class="alert-info" *ngIf="!restaurant.reviews.length">
-                <h3>No comments!</h3>
+                <h3>No Reviews</h3>
             </div>
             <div *ngIf="restaurant.reviews.length > 0">
-                <ul class="list-group" *ngFor="let comment of restaurant.reviews">
-                    <li class="list-group-item">{{comment.content}}</li>
-                </ul>
+                <table class="table table-striped mt-2">
+                    <thead>
+                      <tr>
+                        <th scope="col">Author</th>
+                        <th scope="col">Review</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let review of restaurant.reviews">
+                        <th scope="row">{{review.reviewer.userName}}</th>
+                        <td>{{review.content}}</td>
+                        <td>{{review.star_rating}}</td>
+                        <td>{{review.review_date | date}}</td>
+                        <td><button class="btn btn-danger" (click) = "delete(restaurant._id, review._id)"><i class="fas fa-trash-alt"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
             </div>
             <div class="mt-2">
                 <button class="btn btn-warning mr-4" routerLink="/admin">Cancel</button>

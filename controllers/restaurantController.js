@@ -16,7 +16,7 @@ exports.Restaurant_list = async function(req, res){
 // Restaurant details
 exports.Restaurant_Details = async function(req, res){
     const id = req.params.id;
-    await Restaurant.findOne({_id:id}).populate('reviews').exec((err, doc) =>{
+    await Restaurant.findOne({_id:id}).populate({path:'reviews', populate:{path:'reviewer'}}).exec((err, doc) =>{
         if(err){
             res.json({'error message' : "Couldn't find requested restaurant"});
         }

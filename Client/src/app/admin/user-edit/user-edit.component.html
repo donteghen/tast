@@ -3,7 +3,7 @@
         <h2 style="font-style: italic; font-weight: bold; font-size: 24;">Couldn't get requested User :(</h2>
         <button class="btn btn-primary" style="font-style: italic; font-weight: bold; font-size: 24;" routerLink="/admin">Go back</button>
     </div>
-    <div class="mt-4 bg-light" *ngIf="user.userName">
+    <div class="mt-4 mb-4 bg-light" *ngIf="user.userName">
         <h2 style="font-style: italic; font-weight: bold;">Update User Details</h2>
 
         <form [formGroup]="form" (ngSubmit)="update(form)">
@@ -20,19 +20,31 @@
                     <input type="checkbox" [checked]="isAdmin.value" class="form-control" name="isAdmin" formControlName="isAdmin">
                 </label>
             </div>
-            <div class="alert-info" *ngIf="!userReviews">
-                <h3>No comments!</h3>
-            </div>
-            <div *ngIf="userReviews">
-                <ul class="list-group" *ngFor="let comment of userReviews">
-                    <li class="list-group-item">{{comment}}</li>
-                </ul>
-            </div>
-            <div class="mt-2">
+            <div class="mt-2 text-center">
                 <button class="btn btn-warning mr-4" routerLink="/admin/users">Cancel</button>
                 <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Update User</button>
-            </div>
-            
+            </div>  
         </form>
     </div>
+    <div class="mt-4">
+        <div class="text-center"><h3 style="font-style: italic; font-weight: bold;">User's Current reviews</h3></div>    
+        <table class="table table-striped mt-2">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Review</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let review of userReviews; let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{review.content}}</td>
+                <td>{{review.star_rating}}</td>
+                <td>{{review.review_date | date}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 </div>

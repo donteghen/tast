@@ -1,8 +1,10 @@
+import { ReviewService } from 'src/app/services/review.service';
 import { Restaurant } from 'src/models/restaurants';
 import { RestaurantService } from './../../services/restaurant.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-restaurant-edit',
@@ -10,16 +12,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./restaurant-edit.component.css']
 })
 export class RestaurantEditComponent implements OnInit {
-restaurant = new Restaurant()
-form:FormGroup
+restaurant = new Restaurant();
+form:FormGroup;
 
-  constructor(private restaurantService:RestaurantService, private activeRoute: ActivatedRoute, private router:Router) { }
+
+  constructor(private restaurantService:RestaurantService, private activeRoute: ActivatedRoute, private router:Router, private reviewService:ReviewService) { }
 
   ngOnInit(): void {
      this.activeRoute.params.subscribe(param=>{
       var id = param.id
       this.restaurantService.getRestaurant(id).subscribe(data =>{ 
         Object.assign(this.restaurant, data);
+        console.log(this.restaurant)
         this.form = new FormGroup({
           name: new FormControl(this.restaurant.name, [Validators.required]),
           location : new FormControl(this.restaurant.location, [Validators.required]),
@@ -27,7 +31,6 @@ form:FormGroup
             drinks: new FormControl(this.restaurant.menu.drinks.join() ),
             dishes: new FormControl(this.restaurant.menu.dishes.join())
           }),
-          review: new FormControl(this.restaurant.reviews)
         });
         
       })
@@ -70,4 +73,10 @@ form:FormGroup
       }
     }
 
+    delete(restaurantId:string, reviewId:string){
+      this.reviewService.deleteReview(restaurantId,reviewId).subscribe(data =>{
+        //window.alert("Are you sure about this action");
+        console.log(data);
+      })
+    }
 }

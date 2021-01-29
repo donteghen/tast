@@ -1,8 +1,10 @@
+import { Review } from './../../../models/reviews';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -14,9 +16,9 @@ user = new User();
 form:FormGroup;
 
 /* userReview from user services*/
-userReviews : string[];
+userReviews : Review[];
 
-  constructor(private userService: UserService, private activeRoute:ActivatedRoute, private router:Router) { }
+  constructor(private userService: UserService, private activeRoute:ActivatedRoute, private router:Router, private reviewService:ReviewService) { }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(param =>{
@@ -24,6 +26,9 @@ userReviews : string[];
       this.userService.getUser(id).subscribe(data =>{
         Object.assign(this.user, data);
         console.log(this.user);
+        this.reviewService.getReviews().subscribe(data =>{
+          this.userReviews = data.filter(review => review.reviewer._id == this.user._id);
+        });
         this.form = new FormGroup({
           userName: new FormControl(this.user.userName, [Validators.required]),
           email: new FormControl(this.user.email, [Validators.required]),
@@ -43,10 +48,6 @@ userReviews : string[];
     return this.form.get('isAdmin');
   }
 
-  // get all user's reviews from review service 
-  getUserReviews(){
-    this.userReviews = []; // review service later.
-  }
 
   update(form:FormGroup){
     if(form.valid){

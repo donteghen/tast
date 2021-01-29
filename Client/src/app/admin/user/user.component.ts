@@ -38,4 +38,6 @@ pageSize:number=2;
   pageChange(p:number){
     this.userView = this.users.slice((p-1) * this.pageSize, (p - 1) * this.pageSize + this.pageSize )
   }
+
+
 }

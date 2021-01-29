@@ -1,19 +1,2 @@
 
-ul.nav li a:hover {
-    color: white !important;
-    font-size: 25px !important;
-}
 
-ul.nav li a {
-    color: white !important;
-    font-size: 24px;
-}
-.topNav{
-    display: flex;
-    justify-content:right;
-    align-items: center;
-    height: 100px; 
-}
-ul li{
-    margin-right: 6px !important;
-}

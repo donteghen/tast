@@ -68,6 +68,7 @@ exports.Review_Update = function(req, res){
 exports.Review_Delete = async function(req, res){
     var id = req.params.id;
     var reviewId = req.params.review_id;
+    console.log(id, reviewId);
     await Review.deleteOne({_id:reviewId}, (err) =>{
         if(err){
             res.status(500).json({"Error message": "Couldn't delete review"});
@@ -78,12 +79,14 @@ exports.Review_Delete = async function(req, res){
                     res.status(500).json({"Error message": "Couldn't find restaurant to delete review"});
                 }
                 else{
+                    console.log(doc)
                     doc.reviews.pull(reviewId);
                     doc.save((err) =>{
                         if(err){
                             res.status(500).json({"error message": "Couldn't delete review reference in restaurant"})
                         }
                         else{
+                            console.log(doc)
                             res.status(200).json({"Success message":"Successfully deleted review and restaurant reference"})
                         }
                     })
