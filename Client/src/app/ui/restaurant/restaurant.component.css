@@ -1,0 +1,42 @@
+
+    .product-item  .product-item-content {
+        border: 1px solid var(--surface-d);
+        border-radius: 3px;
+        margin: .3rem;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    .product-item  .product-image {
+        width: 100%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+    .section-header:hover{
+        text-decoration: underline;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    
+        .p-scrollpanel p {
+            padding: .5rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+    
+        
+            
+    
+            .p-scrollpanel .custombar1{
+                background-color: var(--primary-color);
+                opacity: 1;
+                transition: background-color .2s;
+            }
+    
+                .p-scrollpanel .custombar1 .p-scrollpanel-bar :hover {
+                    background-color: #007ad9;
+                }
+            
+    
+        
+    

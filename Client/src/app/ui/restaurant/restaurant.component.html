@@ -1,19 +1,275 @@
 <div class="container-fluid mt-4">
-    <div class="row">
-        <div class="col-sm-3 border-right">
 
-        </div>
-        <div class="col-sm-9">
-            <div class="row mt-4" >
-                <div class="card col-sm-3 mt-2" style="width: 100%; " *ngFor="let restaurant of restaurants">
-                    <img src="https://source.unsplash.com/daily" class="card-img-top" style="height: 200px;">
-                    <div class="card-body" >
-                        <h5 class="card-title">{{restaurant.name}}</h5>
-                        <p class="card-text">{{restaurant._id}}</p>
-                        <a routerLink="/restaurants/{{restaurant._id}}" class="btn btn-primary">Reviews</a>
+
+        <div class="my-2">
+            <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000" [style]="{height:'100%'}" class="mb-4">
+                <h1 style="font-weight:normal">Filter Search:</h1>
+                <button pButton type="button" label="Remove Filter" icon="pi pi-times" *ngIf="filterOn" (click)="removeFilter()"></button>
+                <p-scrollPanel [style]="{width: '100%', height: '400px'}"styleClass="custombar1">
+                    <div class="border-bottom bg-light mt-2">
+                        <h5>Cities</h5>
+                        <div class="p-field-checkbox">
+                            <label for="ny">
+                                <p-checkbox name="group1" value="Istanbul" [(ngModel)]="selectedCities" inputId="ny"></p-checkbox>
+                                Istanbul
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="sf">
+                                <p-checkbox name="group1" value="Ankara" [(ngModel)]="selectedCities" inputId="sf"></p-checkbox>
+                                Ankara
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="la">
+                                <p-checkbox name="group1" value="Izmir" [(ngModel)]="selectedCities" inputId="la"></p-checkbox>
+                                Izmir
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="ch"><p-checkbox name="group1" value="Antalya" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                                Antalya
+                            </label>
+                        </div>
+                        <button pButton label="Apply cities" class="p-button-raised p-button-rounded my-1" (click)="citiesApply()"></button>
                     </div>
-                </div>
-            </div>
+        
+                    <div class="border-bottom bg-light mt-2">
+                        <h5>Price Range</h5>
+                        <div class="p-field-checkbox">
+                            <label for="ny">
+                                <p-checkbox name="group1" value="15 - 150" [(ngModel)]="selectedPrices" inputId="ny"></p-checkbox>
+                                15 - 150
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="sf">
+                                <p-checkbox name="group1" value="24 - 85" [(ngModel)]="selectedPrices" inputId="sf"></p-checkbox>
+                                24 - 85
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="la">
+                                <p-checkbox name="group1" value="26 - 120" [(ngModel)]="selectedPrices" inputId="la"></p-checkbox>
+                                26 - 120
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="ch"><p-checkbox name="group1" value="50 - 145" [(ngModel)]="selectedPrices" inputId="ch"></p-checkbox>
+                                50 - 145
+                            </label>
+                        </div>
+                        <button pButton label="Apply Prices" class="p-button-raised p-button-rounded my-1" (click)="priceApply()"></button>
+                    </div>
+                    <div class="border-bottom bg-light mt-2">
+                        <h5>Dishes</h5>
+                        <div class="p-field-checkbox">
+                            <label for="ny">
+                                <p-checkbox name="group1" value="Iskender" [(ngModel)]="selectedCuisine" inputId="ny"></p-checkbox>
+                                Iskender
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="sf">
+                                <p-checkbox name="group1" value="Magal Köfte" [(ngModel)]="selectedCuisine" inputId="sf"></p-checkbox>
+                                Magal Köfte
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="la">
+                                <p-checkbox name="group1" value="Lahmacun" [(ngModel)]="selectedCuisine" inputId="la"></p-checkbox>
+                                Lahmacun
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="ch"><p-checkbox name="group1" value="Adana Kebab" [(ngModel)]="selectedCuisine" inputId="ch"></p-checkbox>
+                                Adana Kebab
+                            </label>
+                        </div>
+                        <button pButton label="Apply Dishes" class="p-button-raised p-button-rounded my-1" (click)="dishApply()"></button>
+                    </div>
+        
+                    <div class="border-bottom bg-light mt-2">
+                        <h5>Cuisine</h5>
+                        <div class="p-field-checkbox">
+                            <label for="ny">
+                                <p-checkbox name="group1" value="Traditional" [(ngModel)]="selectedCities" inputId="ny"></p-checkbox>
+                                Traditional
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="sf">
+                                <p-checkbox name="group1" value="Pastery" [(ngModel)]="selectedCities" inputId="sf"></p-checkbox>
+                                Pastery
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="la">
+                                <p-checkbox name="group1" value="Turkish Special soup" [(ngModel)]="selectedCities" inputId="la"></p-checkbox>
+                                Turkish Special soup
+                            </label>
+                        </div>
+                        <div class="p-field-checkbox">
+                            <label for="ch"><p-checkbox name="group1" value="Delights" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                                Delights
+                            </label>
+                        </div>
+                        <button pButton label="Apply Cuisine" class="p-button-raised p-button-rounded my-1" (click)="cuisineApply()"></button>
+                    </div>
+                
+                        <p-button type="button" (click)="visibleSidebar1 = false" label="Save" styleClass="p-button-success"></p-button>
+                        <p-button type="button" (click)="visibleSidebar1 = false" label="Cancel" styleClass="p-button-secondary"></p-button>
+                </p-scrollPanel>
+                
+                
+            </p-sidebar>
+            <p-button type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right" class="p"></p-button>
+        </div>   
+            
+
+
+    <div class="col-sm-12">
+        <div class="">
+            <h3 class="section-header">Classic Restaurants</h3>
+            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-restaurant pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-item-content">
+                            
+                            <div>
+                                <img src="https://source.unsplash.com/daily" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                        [(ngModel)]="restaurant.reviews.star_rating">
+                                    </p-rating>{{restaurant.reviews.length}} reviews
+                                </h6>
+                                <span >{{restaurant.location}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    <p-button type="button" styleClass="p-button-danger p-button-rounded p-mr-2" icon="pi pi-heart"></p-button>
+                                    <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
+                                    <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
+                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
         </div>
-    </div>
-</div>
+
+        <div class="">
+            <h3 class="section-header">Traditional Cuisine</h3>
+            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-restaurant pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-item-content">
+                            
+                            <div>
+                                <img src="https://source.unsplash.com/1600x900/?nature,animal" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                        [(ngModel)]="restaurant.reviews.star_rating">
+                                    </p-rating>{{restaurant.reviews.length}} reviews
+                                </h6>
+                                <span >{{restaurant.location}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    
+                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+        <div class="">
+            <h3 class="section-header">5-Star Restauarant</h3>
+            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-restaurant pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-item-content">
+                            
+                            <div>
+                                <img src="https://source.unsplash.com/1600x900/?nature,water" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                        [(ngModel)]="restaurant.reviews.star_rating">
+                                    </p-rating>{{restaurant.reviews.length}} reviews
+                                </h6>
+                                <span >{{restaurant.location}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    
+                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+        <div class="">
+            <h3 class="section-header">Turksih Delight</h3>
+            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-restaurant pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-item-content">
+                            
+                            <div>
+                                <img src="https://source.unsplash.com/1600x900/?nature,tree" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                        [(ngModel)]="restaurant.reviews.star_rating">
+                                    </p-rating>{{restaurant.reviews.length}} reviews
+                                </h6>
+                                <span >{{restaurant.location}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    
+                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+        <div class="">
+            <h3 class="section-header">Franchise Brands</h3>
+            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-restaurant pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-item-content">
+                            
+                            <div>
+                                <img src="https://source.unsplash.com/1600x900/?nature,sky" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                        [(ngModel)]="restaurant.reviews.star_rating">
+                                    </p-rating>{{restaurant.reviews.length}} reviews
+                                </h6>
+                                <span >{{restaurant.location}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    
+                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    
+
+

@@ -10,7 +10,14 @@ import { CommonModule } from '@angular/common';
 import {HttpClientModule} from '@angular/common/http'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './ui/home/home.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {CarouselModule} from 'primeng/carousel';
+import {ButtonModule} from 'primeng/button';
+import {ToastModule} from 'primeng/toast';
+import {RatingModule} from 'primeng/rating';
+import {CheckboxModule} from 'primeng/checkbox';
+import {SidebarModule} from 'primeng/sidebar';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -21,7 +28,8 @@ import { HomeComponent } from './ui/home/home.component';
   ],
   imports: [
     BrowserModule, 
-    AppRoutingModule, FormsModule, ReactiveFormsModule, CommonModule, HttpClientModule, NgbModule
+    AppRoutingModule, FormsModule, ReactiveFormsModule, CommonModule, HttpClientModule, NgbModule,
+     BrowserAnimationsModule, CarouselModule, ButtonModule, ToastModule, RatingModule, CheckboxModule, SidebarModule, ScrollPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]
