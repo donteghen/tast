@@ -7,16 +7,16 @@
 
   <!-- Step 2: Add the ngbCollapse directive to the element below. -->
   <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav justify-content-center">
       <li class="nav-item">
         <!-- Step 4: Close the menu when a link is clicked. -->
-        <a class="nav-link " [routerLink]="'/restaurants'" (click)="isMenuCollapsed = true">Features</a>
+        <a class="nav-link " [routerLink]="'/restaurants'" (click)="isMenuCollapsed = true">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'/login'" (click)="isMenuCollapsed = true">Examples</a>
+        <a class="nav-link" [routerLink]="'/'" (click)="isMenuCollapsed = true">Examples</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'/admin'" (click)="isMenuCollapsed = true">About</a>
+        <a class="nav-link" [routerLink]="'/admin/restaurant'" (click)="isMenuCollapsed = true">Post <i class="fas fa-plus-square"></i></a>
       </li>
       <li class="nav-item">
         <div ngbDropdown class="d-inline-block">

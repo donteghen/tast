@@ -30,10 +30,35 @@
             </ng-template>
           </ngb-carousel>
     </div>
-    <div class="col-sm-4">
-        <div class ="border-bottom mt-2">details here</div>
-        <div class ="mt-2">revews and ratings here</div>
-        <button class="btn btn-primary btn-block btn-lg mt-2">Add a review</button>
+    <div class="col-sm-4 ">
+        <div class ="border-bottom mt-2">
+          <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                <h6 class="p-mt-0 p-mb-3">
+                  <p-rating [cancel]="false" [readonly]="true"[(ngModel)]="rating"></p-rating>
+                    {{restaurant.reviews.length? restaurant.reviews.length : 0}} reviews
+                </h6>
+                <span >{{restaurant.location}}</span>
+        </div>
+        <div class ="mt-2">Details</div>
+        <button class="btn btn-primary btn-block btn-lg mt-2">Post a review <i class="fas fa-plus"></i></button>
     </div>
    
 </div>
+
+<div class="container-fluid mb-2">
+  <div class="list-group mt-2 bg-light" > <!--*ngFor="let review of restaurant.reviews" -->
+    <a class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 ">
+        <div class="d-flex w-100 ">
+            <img src="https://via.placeholder.com/100/0000FF/808080 ?Text=logo" class="rounded-circle">
+            <div class="ml-2">
+                <h3 class="mb-1">My name is nice:)</h3> <!--{{review.reviewer}} -->
+                <h5 class="mb-1">first review for testing or for fun or just because i don't give a fuck</h5>  <!--{{review.content}} -->
+                <p>rating:<span style="color: rgb(0, 255, 136);"><ngb-rating [rate]="3" readonly="true" max="5"></ngb-rating></span></p>
+            </div>
+        </div>
+      </div>
+    </a>  
+</div>
+</div>
+

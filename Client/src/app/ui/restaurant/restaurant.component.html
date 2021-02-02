@@ -123,153 +123,199 @@
                 
                 
             </p-sidebar>
-            <p-button type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right" class="p"></p-button>
+            <p-button type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right" label="Filter"></p-button>
         </div>   
             
 
 
-    <div class="col-sm-12">
-        <div class="">
-            <h3 class="section-header">Classic Restaurants</h3>
-            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
-                <ng-template let-restaurant pTemplate="item">
-                    <div class="product-item">
-                        <div class="product-item-content">
-                            
-                            <div>
-                                <img src="https://source.unsplash.com/daily" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
-                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
-                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
-                                        [(ngModel)]="restaurant.reviews.star_rating">
-                                    </p-rating>{{restaurant.reviews.length}} reviews
-                                </h6>
-                                <span >{{restaurant.location}}</span>
-                                <div class="car-buttons p-mt-5">
-                                    <p-button type="button" styleClass="p-button-danger p-button-rounded p-mr-2" icon="pi pi-heart"></p-button>
-                                    <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
-                                    <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
-                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
-                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
-                                    </div>
-                                </div>
+<div class="col-sm-12" *ngIf="!filterOn">
+<div class="">
+    <h3 class="section-header">Classic Restaurants</h3>
+    <p-carousel [value]="restaurants" [numVisible]="6" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-restaurant pTemplate="item">
+            <div class="product-item">
+                <div class="product-item-content">
+                    
+                    <div>
+                        <img src="https://source.unsplash.com/daily" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                        <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                        <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                [(ngModel)]="restaurant.reviews.star_rating">
+                            </p-rating>{{restaurant.reviews.length}} reviews
+                        </h6>
+                        <span >{{restaurant.location}}</span>
+                        <div class="car-buttons p-mt-5">
+                            <p-button type="button" styleClass="p-button-danger p-button-rounded p-mr-2" icon="pi pi-heart"></p-button>
+                            <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
+                            <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
+                            <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
                             </div>
                         </div>
                     </div>
-                </ng-template>
-            </p-carousel>
-        </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
 
-        <div class="">
-            <h3 class="section-header">Traditional Cuisine</h3>
-            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
-                <ng-template let-restaurant pTemplate="item">
-                    <div class="product-item">
-                        <div class="product-item-content">
+<div class="">
+    <h3 class="section-header">Traditional Cuisine</h3>
+    <p-carousel [value]="restaurants" [numVisible]="6" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-restaurant pTemplate="item">
+            <div class="product-item">
+                <div class="product-item-content">
+                    
+                    <div>
+                        <img src="https://source.unsplash.com/1600x900/?nature,animal" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                        <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                        <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                [(ngModel)]="restaurant.reviews.star_rating">
+                            </p-rating>{{restaurant.reviews.length}} reviews
+                        </h6>
+                        <span >{{restaurant.location}}</span>
+                        <div class="car-buttons p-mt-5">
                             
-                            <div>
-                                <img src="https://source.unsplash.com/1600x900/?nature,animal" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
-                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
-                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
-                                        [(ngModel)]="restaurant.reviews.star_rating">
-                                    </p-rating>{{restaurant.reviews.length}} reviews
-                                </h6>
-                                <span >{{restaurant.location}}</span>
-                                <div class="car-buttons p-mt-5">
-                                    
-                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
-                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
-                                    </div>
-                                </div>
+                            <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
                             </div>
                         </div>
                     </div>
-                </ng-template>
-            </p-carousel>
-        </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
 
-        <div class="">
-            <h3 class="section-header">5-Star Restauarant</h3>
-            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
-                <ng-template let-restaurant pTemplate="item">
-                    <div class="product-item">
-                        <div class="product-item-content">
+<div class="">
+    <h3 class="section-header">5-Star Restauarant</h3>
+    <p-carousel [value]="restaurants" [numVisible]="6" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-restaurant pTemplate="item">
+            <div class="product-item">
+                <div class="product-item-content">
+                    
+                    <div>
+                        <img src="https://source.unsplash.com/1600x900/?nature,water" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                        <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                        <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                [(ngModel)]="restaurant.reviews.star_rating">
+                            </p-rating>{{restaurant.reviews.length}} reviews
+                        </h6>
+                        <span >{{restaurant.location}}</span>
+                        <div class="car-buttons p-mt-5">
                             
-                            <div>
-                                <img src="https://source.unsplash.com/1600x900/?nature,water" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
-                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
-                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
-                                        [(ngModel)]="restaurant.reviews.star_rating">
-                                    </p-rating>{{restaurant.reviews.length}} reviews
-                                </h6>
-                                <span >{{restaurant.location}}</span>
-                                <div class="car-buttons p-mt-5">
-                                    
-                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
-                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
-                                    </div>
-                                </div>
+                            <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
                             </div>
                         </div>
                     </div>
-                </ng-template>
-            </p-carousel>
-        </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
 
-        <div class="">
-            <h3 class="section-header">Turksih Delight</h3>
-            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
-                <ng-template let-restaurant pTemplate="item">
-                    <div class="product-item">
-                        <div class="product-item-content">
+<div class="">
+    <h3 class="section-header">Turksih Delight</h3>
+    <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-restaurant pTemplate="item">
+            <div class="product-item">
+                <div class="product-item-content">
+                    
+                    <div>
+                        <img src="https://source.unsplash.com/1600x900/?nature,tree" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                        <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                        <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                [(ngModel)]="restaurant.reviews.star_rating">
+                            </p-rating>{{restaurant.reviews.length}} reviews
+                        </h6>
+                        <span >{{restaurant.location}}</span>
+                        <div class="car-buttons p-mt-5">
                             
-                            <div>
-                                <img src="https://source.unsplash.com/1600x900/?nature,tree" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
-                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
-                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
-                                        [(ngModel)]="restaurant.reviews.star_rating">
-                                    </p-rating>{{restaurant.reviews.length}} reviews
-                                </h6>
-                                <span >{{restaurant.location}}</span>
-                                <div class="car-buttons p-mt-5">
-                                    
-                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
-                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
-                                    </div>
-                                </div>
+                            <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
                             </div>
                         </div>
                     </div>
-                </ng-template>
-            </p-carousel>
-        </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
 
-        <div class="">
-            <h3 class="section-header">Franchise Brands</h3>
-            <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
-                <ng-template let-restaurant pTemplate="item">
-                    <div class="product-item">
-                        <div class="product-item-content">
+<div class="">
+    <h3 class="section-header">Franchise Brands</h3>
+    <p-carousel [value]="restaurants" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-restaurant pTemplate="item">
+            <div class="product-item">
+                <div class="product-item-content">
+                    
+                    <div>
+                        <img src="https://source.unsplash.com/1600x900/?nature,sky" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
+                        <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
+                        <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                                [(ngModel)]="restaurant.reviews.star_rating">
+                            </p-rating>{{restaurant.reviews.length}} reviews
+                        </h6>
+                        <span >{{restaurant.location}}</span>
+                        <div class="car-buttons p-mt-5">
                             
-                            <div>
-                                <img src="https://source.unsplash.com/1600x900/?nature,sky" style="height: 150px;" routerLink="/restaurants/{{restaurant._id}}">
-                                <h5 class="p-mb-1" style="text-decoration: underline;">{{restaurant.name}}</h5>
-                                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
-                                        [(ngModel)]="restaurant.reviews.star_rating">
-                                    </p-rating>{{restaurant.reviews.length}} reviews
-                                </h6>
-                                <span >{{restaurant.location}}</span>
-                                <div class="car-buttons p-mt-5">
-                                    
-                                    <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
-                                        <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
-                                    </div>
-                                </div>
+                            <div class="mt-2" routerLink="/restaurants/{{restaurant._id}}">
+                                <button pButton label="Review" class="p-button-raised p-button-rounded"></button>
                             </div>
                         </div>
                     </div>
-                </ng-template>
-            </p-carousel>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+</div>
+<div class="row my-4" *ngFor="let restaurant of retaurantPaginating">
+    <div class="col-sm-4" >
+        <ngb-carousel *ngIf="images" >
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="images[0]" alt="Random first slide" class="small-carousel">
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="images[1]" alt="Random second slide" class="small-carousel">
+              </div>
+              <div class="carousel-caption"> 
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="images[2]" alt="Random third slide" class="small-carousel">
+              </div>
+              <div class="carousel-caption">
+              </div>
+            </ng-template>
+          </ngb-carousel>
+    </div>
+    <div class="col-sm-8">
+        <div class ="border-bottom mt-2">
+            <h5 class="p-mb-1" style="text-decoration: underline; cursor: pointer;" (click)="routeToDetail(restaurant._id)">{{restaurant.name}}</h5>
+                <h6 class="p-mt-0 p-mb-3"><p-rating [cancel]="false" [readonly]="true"
+                        [ngModel]="getRating(restaurant)">
+                    </p-rating>{{restaurant.reviews.length}} reviews
+                </h6>
+                <span >{{restaurant.location}}</span>
         </div>
-    
+        <div class ="mt-2" *ngIf="restaurant.reviews.length > 0">
+            <p><i class="fas fa-quote-left"></i>{{restaurant.reviews[0]}}<i class="fas fa-quote-right"></i></p>
+            <p><i class="fas fa-quote-left"></i>{{restaurant.reviews[1]}}<i class="fas fa-quote-right"></i></p>
+        </div>
+        <div class ="bg-warning mt-2" *ngIf="restaurant.reviews.length == 0">No Reviews yet.</div>
+    </div>
+   
+</div>
+<div class="d-flex justify-content-end">
+    <ngb-pagination [collectionSize]="restaurants.length" [pageSize]="5" 
+    (pageChange)="pageChange($event)" [(page)]="page"></ngb-pagination>
+</div>
+
 
 

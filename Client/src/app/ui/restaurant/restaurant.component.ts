@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { Restaurant } from 'src/models/restaurants';
 
@@ -10,15 +11,20 @@ import { Restaurant } from 'src/models/restaurants';
 export class RestaurantComponent implements OnInit {
   restaurants : Restaurant[];
   restaurantData : Restaurant[];
+  retaurantPaginating : Restaurant[];
   responsiveOptions;
   filterOn : boolean = false;
+  page: number=1;
   // test data
   visibleSidebar1 : boolean = false;
   selectedCities: string[] = [];
   selectedPrices: string[] = [];
   selectedDished: string[] = [];
   selectedCuisine: string[] = [];
-  constructor(private restaurantService: RestaurantService) { 
+  images : string[] = ['https://source.unsplash.com/1600x900/?nature,sky', 'https://source.unsplash.com/1600x900/?nature,tree',
+'https://source.unsplash.com/1600x900/?nature,water', 'https://source.unsplash.com/1600x900/?nature,animal',
+ 'https://source.unsplash.com/daily'];
+  constructor(private restaurantService: RestaurantService, private router:Router) { 
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
@@ -40,13 +46,30 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFreshList();
+    
   }
   getFreshList(){
     this.restaurantService.getResatuarants()
     .subscribe(data =>{
       this.restaurantData = data;
       this.restaurants = this.restaurantData;
+      this.pageChange(1);
     });
+  }
+
+  getRating(res:Restaurant): number{
+    if(res.reviews.length == 0){
+      return 0
+    }
+    else{
+      var rate = res.reviews.map(r => r.star_rating).reduce((accum=0, curr) => accum + curr);
+    return rate;
+    }
+
+  }
+
+  routeToDetail(id:string){
+    this.router.navigateByUrl(`/restaurants/${id}`);
   }
 
    // filters
@@ -83,5 +106,11 @@ export class RestaurantComponent implements OnInit {
     this.selectedDished = [];
     this.getFreshList();
    }
+   
+
+    pageChange(p:number){
+      this.page = p;
+      this.retaurantPaginating = this.restaurants.slice((p-1) * 5, (p- 1) * 5 + 5 );
+    }
 
 }

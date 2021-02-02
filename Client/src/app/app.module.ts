@@ -18,18 +18,29 @@ import {RatingModule} from 'primeng/rating';
 import {CheckboxModule} from 'primeng/checkbox';
 import {SidebarModule} from 'primeng/sidebar';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {ToolbarModule} from 'primeng/toolbar';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import { LoginComponent } from './ui/login/login.component';
+import { RegisterComponent } from './ui/register/register.component';
+import { ProfileComponent } from './ui/profile/profile.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RestaurantComponent,
     RestaurantDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule, 
     AppRoutingModule, FormsModule, ReactiveFormsModule, CommonModule, HttpClientModule, NgbModule,
-     BrowserAnimationsModule, CarouselModule, ButtonModule, ToastModule, RatingModule, CheckboxModule, SidebarModule, ScrollPanelModule
+     ToolbarModule, SplitButtonModule,
+     BrowserAnimationsModule, CarouselModule, ButtonModule, ToastModule, RatingModule, CheckboxModule, SidebarModule, 
+     ScrollPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

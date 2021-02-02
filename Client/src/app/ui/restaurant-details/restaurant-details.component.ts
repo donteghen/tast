@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./restaurant-details.component.css']
 })
 export class RestaurantDetailsComponent implements OnInit {
+  rating: number= 0;
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 restaurant = new Restaurant();
   constructor(private restaurantService: RestaurantService, private router:Router, private activeRoute:ActivatedRoute) { }
@@ -20,10 +21,14 @@ restaurant = new Restaurant();
       console.log(id);
       this.restaurantService.getRestaurant(id)
     .subscribe(data =>{
-      console.log(data);
+      this.restaurant = data;
+      this.getRating(0);
     });
     });
     
   }
-
+   
+  getRating(rate: number){
+    this.rating = this.restaurant.reviews.map(r => r.star_rating).reduce((accum, curr) => accum + curr, rate);
+  }
 }
